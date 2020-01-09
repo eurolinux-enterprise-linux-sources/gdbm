@@ -1,7 +1,7 @@
 Summary: A GNU set of database routines which use extensible hashing
 Name: gdbm
 Version: 1.8.0
-Release: 37%{?dist}
+Release: 38%{?dist}
 Source: http://ftp.gnu.org/gnu/gdbm/gdbm-%{version}.tar.gz
 # Prevent gdbm from storing uninitialized memory content
 # to database files.
@@ -128,6 +128,10 @@ fi
 rm -rf ${RPM_BUILD_ROOT}
 
 %changelog
+* Mon Jan 12 2015 Honza Horak <hhorak@redhat.com> - 1.8.0-38
+- Fix patch for #629640 by fixing only the typo
+  Resolves: #1180392
+
 * Tue Dec 2 2014 Marek Skalicky <mskalick@redhat.com> - 1.8.0-37
 - gdbmopen.c: Fix typo; s/GDBM_OPENMASK/GDBM_WRITER/.
   Resolves: #629640

@@ -1,7 +1,7 @@
 diff -up gdbm-1.8.0/gdbmopen.c.gdbmopen gdbm-1.8.0/gdbmopen.c
---- gdbm-1.8.0/gdbmopen.c.gdbmopen	2012-06-12 10:08:02.853499099 +0200
-+++ gdbm-1.8.0/gdbmopen.c	2012-06-12 10:08:13.620769745 +0200
-@@ -129,19 +129,17 @@ gdbm_open (file, block_size, flags, mode
+--- gdbm-1.8.0/gdbmopen.c.gdbmopen	2015-01-09 16:11:45.660400014 +0100
++++ gdbm-1.8.0/gdbmopen.c	2015-01-09 16:11:45.667400018 +0100
+@@ -129,7 +129,7 @@ gdbm_open (file, block_size, flags, mode
  	dbf->desc = open (dbf->name, O_RDONLY, 0);
  	break;
  
@@ -10,15 +10,3 @@ diff -up gdbm-1.8.0/gdbmopen.c.gdbmopen gdbm-1.8.0/gdbmopen.c
  	dbf->desc = open (dbf->name, O_RDWR, 0);
  	break;
  
-       case GDBM_NEWDB:
- 	dbf->desc = open (dbf->name, O_RDWR|O_CREAT, mode);
--	flags = GDBM_WRITER;
- 	need_trunc = TRUE;
- 	break;
- 
-       default:
- 	dbf->desc = open (dbf->name, O_RDWR|O_CREAT, mode);
--	flags = GDBM_WRITER;
- 	break;
- 
-     }
