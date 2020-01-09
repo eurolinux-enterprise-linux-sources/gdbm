@@ -1,7 +1,7 @@
 Summary: A GNU set of database routines which use extensible hashing
 Name: gdbm
 Version: 1.8.0
-Release: 36%{?dist}
+Release: 37%{?dist}
 Source: http://ftp.gnu.org/gnu/gdbm/gdbm-%{version}.tar.gz
 # Prevent gdbm from storing uninitialized memory content
 # to database files.
@@ -22,6 +22,9 @@ Patch4: gdbm-1.8.0-memleak.patch
 # Make gdbm handle read(2) returning less data than it was asked for.
 # http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=274417 (rhbz#572900)
 Patch5: gdbm-1.8.0-shortread.patch
+# GDBM.open("x", nil) do not create file (rhbz#629640)
+# Fixed in gdbm-1.8.3
+Patch6: gdbm-1.8.0-gdbmopen.patch
 License: GPLv2+
 URL: http://www.gnu.org/software/gdbm/
 Group: System Environment/Libraries
@@ -61,6 +64,7 @@ gdbm database library.  You'll also need to install the gdbm package.
 %patch3 -p1 -b .offset
 %patch4 -p1 -b .memleak
 %patch5 -p1 -b .shortread
+%patch6 -p1 -b .gdbmopen
 
 # refresh config.sub, the original one does not recognize "redhat"
 # as vendorname:
@@ -124,6 +128,10 @@ fi
 rm -rf ${RPM_BUILD_ROOT}
 
 %changelog
+* Tue Dec 2 2014 Marek Skalicky <mskalick@redhat.com> - 1.8.0-37
+- gdbmopen.c: Fix typo; s/GDBM_OPENMASK/GDBM_WRITER/.
+  Resolves: #629640
+
 * Fri May 28 2010 Karel Klic <kklic@redhat.com> - 1.8.0-36
 - Apply -shortread patch
   Resolves: #596163
