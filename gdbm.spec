@@ -2,7 +2,7 @@
 Summary: A GNU set of database routines which use extensible hashing
 Name: gdbm
 Version: 1.10
-Release: 6%{?dist}
+Release: 8%{?dist}
 Source: http://ftp.gnu.org/gnu/gdbm/gdbm-%{version}.tar.gz
 # Prevent gdbm from storing uninitialized memory content
 # to database files.
@@ -110,6 +110,12 @@ fi
 %{_mandir}/man3/* 
 
 %changelog
+* Fri Jan 24 2014 Daniel Mach <dmach@redhat.com> - 1.10-8
+- Mass rebuild 2014-01-24
+
+* Fri Dec 27 2013 Daniel Mach <dmach@redhat.com> - 1.10-7
+- Mass rebuild 2013-12-27
+
 * Mon Mar 25 2013 Honza Horak <hhorak@redhat.com> - 1.10-6
 - Fixed some issues found by Coverity
 - Add support of aarch64
